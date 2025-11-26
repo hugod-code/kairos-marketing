@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rapport final – Éditions Kairos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+   :root {
+  --bg: #e7f0dc;
+  --bg-soft: #f3f7ea;
+  --accent: #9bb889;              /* vert sauge principal */
+  --accent-soft: rgba(155, 184, 137, 0.18);
+  --accent-strong: #6f8760;       /* vert plus foncé */
+  --text: #192317;
+  --muted: #4e6042;
+  --border: rgba(155, 184, 137, 0.6);
+  --shadow-soft: 0 18px 45px rgba(111, 135, 96, 0.25);
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --transition-fast: 0.25s ease-out;
+  --max-width: 1050px;
+}
+
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at top, #dde8cf 0, #f5f8ee 60%, #eef3e3 100%);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  scroll-behavior: smooth;
+}
+
+
+    body {
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page-frame {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(18px);
+  background: linear-gradient(to bottom, #d7e3c3 0, rgba(215, 227, 195, 0.95) 45%, rgba(215, 227, 195, 0.3) 100%);
+  border-bottom: 1px solid rgba(111, 135, 96, 0.35);
+}
+
+    .nav-shell {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 18px 10px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 108px;
+      height: auto;
+      filter: drop-shadow(0 0 18px rgba(148, 163, 184, 0.4));
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #000000;
+    }
+
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 18px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 4px;
+      color: var(--muted);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent), var(--accent-strong));
+      transition: width var(--transition-fast);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      max-width: var(--max-width);
+      margin: 40px auto 0;
+      padding: 12px 18px 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 34px;
+      align-items: center;
+    }
+
+    .hero-card {
+  background: linear-gradient(135deg, #ffffff, #e5f0dd);
+  border-radius: 30px;
+  padding: 26px 22px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+    .hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(155, 184, 137, 0.2);
+  border: 1px solid rgba(155, 184, 137, 0.9);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+    .hero-tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent-strong);
+  box-shadow: 0 0 10px rgba(111, 135, 96, 0.8);
+}
+
+    .hero-title {
+      margin: 18px 0 12px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 3.1vw, 2.7rem);
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text);
+      max-width: 35rem;
+    }
+
+    .hero-meta {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px 18px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .meta-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      color: #000000;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+ .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(111, 135, 96, 0.7);
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  color: #f6f9f1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(111, 135, 96, 0.45);
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+  text-decoration: none;
+}
+    .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 26px 60px rgba(111, 135, 96, 0.6);
+}
+
+    .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(155, 184, 137, 0.8);
+  background: rgba(243, 248, 236, 0.9);
+  color: var(--muted);
+  font-size: 0.83rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  text-decoration: none;
+}
+    .hero-aside {
+      padding: 18px;
+    }
+
+    .hero-aside-card {
+  border-radius: 26px;
+  background: linear-gradient(160deg, #ffffff, #f0f6e8);
+  border: 1px solid var(--border);
+  padding: 20px 18px 18px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+
+    .hero-aside-card::before {
+      position: absolute;
+      top: 14px;
+      right: -70px;
+      font-family: "Playfair Display", serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.6em;
+      text-transform: uppercase;
+      color: rgba(148, 163, 184, 0.24);
+      transform: rotate(-90deg);
+    }
+
+    .aside-heading {
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: #000000;
+      /* font-style: bold; */
+      margin-bottom: 10px;
+    }
+
+    .aside-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .aside-highlight {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: #d9e6cd;                   /* sauge très pâle */
+  border: 1px solid #9bb889;             /* contour sauge */
+  font-size: 0.9rem;
+  color: #4e6042;                        /* texte sauge foncé */
+}
+
+    .aside-highlight strong {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  color: #3a4a33;                        /* titre un peu plus foncé */
+}
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 12px 18px 40px;
+    }
+
+   .section-inner {
+  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, #ffffff, #f3f7ea);
+  border: 1px solid var(--border);
+  padding: 20px 12px 22px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-inner::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at top left, rgba(155, 184, 137, 0.22), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(155, 184, 137, 0.14), transparent 60%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+
+    .section-inner-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-size: 0.74rem;
+      color: #000000;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    p {
+      margin: 0 0 12px;
+      font-size: 0.96rem;
+      color: var(--text);
+    }
+
+    .subheading {
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      color: rgba(190, 242, 200, 0.95);
+    }
+
+    .swot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+   .swot-card {
+  background: #f7faef;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(155, 184, 137, 0.7);
+  padding: 14px 14px 12px;
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+}
+
+    .swot-tag {
+      font-size: 0.8rem;
+      font-family: "Playfair Display", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 6px;
+      color: #000000;
+    }
+
+    .swot-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(74, 222, 128, 0.12), transparent 60%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .chart-card {
+  background: #f7faef;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(155, 184, 137, 0.7);
+  padding: 14px 14px 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+    .chart-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #000000;
+      margin-bottom: 6px;
+    }
+
+    .chart-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 14px;
+      height: 170px;
+      padding: 4px 2px 2px;
+    }
+
+    .bar {
+      flex: 1;
+      position: relative;
+      border-radius: 999px 999px 4px 4px;
+      background: linear-gradient(180deg, rgba(74, 222, 128, 0.9), rgba(21, 128, 61, 0.9));
+      box-shadow: 0 10px 24px rgba(22, 163, 74, 0.8);
+      overflow: hidden;
+      transform-origin: bottom;
+      transform: scaleY(0);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .bar::before {
+      content: attr(data-value-label);
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.78rem;
+      color: rgba(226, 232, 240, 0.96);
+      white-space: nowrap;
+    }
+
+    .bar::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: -26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.76rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .chart-legend {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .legend-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #e9f2dd;                 /* nouveau fond crème sauge */
+  border: 1px solid #9bb889;           /* contour sauge */
+  color: #4e6042;                      /* texte sauge foncé */
+}
+
+    .legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #9bb889;                 /* sauge moyen */
+  box-shadow: 0 0 6px rgba(155, 184, 137, 0.7);
+}
+
+    .objectives-list {
+      margin: 6px 0 0;
+      padding-left: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .objectives-list li {
+      margin-bottom: 8px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      border-top: 1px solid rgba(15, 118, 110, 0.7);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), #020617);
+      padding: 20px 18px 18px;
+      margin-top: 40px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2.4fr) minmax(0, 3fr);
+      gap: 16px;
+      align-items: flex-start;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .footer-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: rgba(226, 232, 240, 0.96);
+    }
+
+    .footer-team {
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .footer-note {
+      font-size: 0.78rem;
+      color: rgba(148, 163, 184, 0.9);
+      text-align: right;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+      }
+      .hero-aside {
+        padding-top: 0;
+      }
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      nav {
+        display: none;
+      }
+      .footer-inner {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: left;
+      }
+      .footer-note {
+        text-align: left;
+      }
+    }
+    .nav-stack {
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand-text-center {
+  text-align: center;
+  margin-top: 4px;
+}
+
+nav {
+  margin-left: 0;        /* on enlève le "auto" de l'ancienne version */
+  display: flex;
+  gap: 18px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+    @media (max-width: 520px) {
+      .hero-card {
+        padding: 24px 18px;
+      }
+      .section-inner {
+        padding: 20px 16px 22px;
+      }
+    }
+    .community-stats {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(155, 184, 137, 0.6);
+}
+
+
+.community-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text);
+  padding: 4px 0;
+}
+
+.community-label {
+  font-weight: 500;
+}
+
+.community-value {
+  color: var(--muted);
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 1200px) {
+  .section-grid {
+    grid-template-columns: 3fr 2fr;
+    grid-auto-flow: dense; /* permet au bloc texte de reprendre sous le cadre */
+  }
+
+  .section-grid > :first-child {
+    grid-column: 1; /* texte */
+  }
+
+  .section-grid > aside {
+    grid-column: 2; /* cadre */
+    grid-row: 1; /* fixe la position du cadre à droite */
+  }
+}
+
+/* Layout spécifique pour la section "Analyse de la présence numérique" */
+.presence-layout {
+  position: relative;
+}
+
+/* Le petit cadre flotte à droite du texte */
+.community-aside {
+  float: right;
+  width: 320px;
+  max-width: 100%;
+  margin: 0 0 20px 24px; /* espace en bas et à gauche */
+}
+
+/* On force le texte à respecter le flottant et se poursuivre en dessous */
+.presence-text::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Version mobile : le cadre passe au-dessus, en pleine largeur */
+@media (max-width: 768px) {
+  .community-aside {
+    float: none;
+    width: 100%;
+    margin: 0 0 16px 0;
+  }
+}
+
+    
+  </style>
+</head>
+<body>
+<div class="page-frame">
+
+  <!-- NAV + HERO -->
+ <header>
+  <div class="nav-shell nav-stack">
+    <div class="brand-column">
+      <!-- Remplacez le src par le chemin de votre logo Kairos -->
+      <img src="Kairos_Logos_logo_c734510b-3a6e-4869-ad4d-b61014c1245a.webp" 
+           alt="Logo Kairos" class="brand-logo" />
+      <div class="brand-text-center">
+        <div class="brand-sub">Green romance &amp; marketing numérique</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#introduction">Introduction</a>
+      <a href="#presence">Présence numérique</a>
+      <a href="#concurrents">Concurrents</a>
+      <a href="#swot">Analyse SWOT</a>
+      <a href="#objectifs">Objectifs</a>
+      <a href="#strategies">Stratégies</a>
+    </nav>
+  </div>
+</header>
+
+  <section class="hero">
+    <div class="hero-card reveal">
+      <div class="hero-tag">
+        <span class="hero-tag-dot"></span>
+        <span>Plan de travail</span>
+      </div>
+      <h1 class="hero-title">Marketing numérique des Éditions Kairos</h1>
+      <p class="hero-subtitle">
+        Une exploration de la green romance à l’ère des réseaux sociaux : entre communautés littéraires, engagement écologique et stratégie numérique.
+      </p>
+      <div class="hero-meta">
+        <div>
+          <div class="meta-label">Travail présenté à</div>
+          <div>François Hachoury</div>
+        </div>
+        <div>
+          <div class="meta-label">Cours</div>
+          <div>Marketing numérique – MARK30170</div>
+        </div>
+        <div>
+          <div class="meta-label">Date</div>
+          <div>Novembre 2025</div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#introduction" class="btn-primary">
+          Lire le rapport
+          <span>↓</span>
+        </a>
+        <!-- Remplacez href par le chemin réel de votre PDF -->
+        <a href="rapport-final-kairos.pdf" class="btn-ghost" download>
+          Télécharger le rapport en PDF
+        </a>
+      </div>
+    </div>
+
+    <aside class="hero-aside reveal">
+      <div class="hero-aside-card">
+        <div class="aside-heading">Équipe</div>
+        <div class="aside-text">
+          Fatma Ghaouar – 11357564<br />
+          Marcus Emmanuel Faucher – 11348826<br />
+          Jean-Alexandre Paraiso – 11361668<br />
+          Isabelle Pujol – 11260604<br />
+          Johan Lubin – 20203227<br />
+        </div>
+        <div class="aside-highlight">
+          <strong>Maison d’édition Kairos</strong><br />
+          Spécialisée dans la green romance, un sous-titre littéraire qui marie amour contemporain, engagement écologique, territoires à préserver et nouveaux modes de vie responsables.
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- INTRODUCTION -->
+  <main>
+    <section id="introduction" class="section">
+      <div class="section-inner reveal">
+        <div class="section-inner-content">
+          <div class="section-label">Ouverture</div>
+          <h2 class="section-title">Introduction</h2>
+
+          <p>
+            La maison d’édition Kairos se spécialise dans le green romance, un sous-titre littéraire de la romance contemporaine qui met en scène des histoires d’amour ancrées dans des thématiques environnementales. Ce type de récit allie sentiments et engagements écologiques comme la protection de la nature, transition durable, reconnexion aux territoires ou aux nouveaux modes de vie responsables.
+          </p>
+
+          <p>
+            Dans le cadre de ce rapport, nous allons analyser et renforcer la stratégie numérique de la maison d’édition Kairos, en se concentrant particulièrement sur son positionnement sur les réseaux sociaux. Les plateformes comme Instagram, Tiktok, Facebook et YouTube jouent un rôle important pour créer une communauté de lecteurs engagés, pour valoriser les valeurs écologiques portées par les ouvrages et accroître la notoriété d’une maison d’édition émergente.
+          </p>
+
+          <p>
+            Parmi ces canaux, Instagram et Tiktok se positionnent comme les deux canaux prioritaires pour Kairos. Instagram offre un terrain pour mettre en valeur l’esthétique de la green romance. À travers le phénomène Booktok, Tiktok représente un levier très important pour toucher un jeune public et pour générer de la viralité ainsi qu’amplifier les ventes. Sa dynamique qui repose sur des courts contenus, qui sont à la fois authentiques et émotionnelles est option parfaite pour aller chercher la curiosité des jeunes utilisateurs de Tiktok.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRÉSENCE NUMÉRIQUE + GRAPHIQUES -->
+    <section id="presence" class="section">
+  <div class="section-inner reveal">
+    <div class="section-inner-content presence-layout">
+
+      <!-- CADRE COMMUNAUTÉ FLOTTANT -->
+      <aside class="community-aside">
+        <div class="chart-card">
+          <div class="chart-title">Taille de la communauté</div>
+          <div class="chart-sub">Nombre d’abonnés par plateforme</div>
+
+          <div class="community-stats">
+            <div class="community-row">
+              <span class="community-label">Facebook</span>
+              <span class="community-value">1 554 abonnés</span>
+            </div>
+            <div class="community-row">
+              <span class="community-label">Instagram</span>
+              <span class="community-value">8 629 abonnés</span>
+            </div>
+            <div class="community-row">
+              <span class="community-label">TikTok</span>
+              <span class="community-value">1 549 abonnés</span>
+            </div>
+          </div>
+
+          <div class="chart-legend">
+            <span class="legend-pill">
+              <span class="legend-dot"></span>
+              Abonnés au 24 octobre
+            </span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- TEXTE QUI DOIT PASSER EN DESSOUS DU CADRE -->
+      <div class="presence-text">
+        <div class="section-label">Diagnostic</div>
+        <h2 class="section-title">Analyse de la présence numérique des Éditions Kairos</h2>
+
+        <p>
+          Dans l’ensemble, la présence sur les réseaux sociaux des Éditions Kairos montre une activité régulière et une communauté engagée, spécialement sur Instagram. À ce jour, la maison d’édition compte 1 554 abonnés sur Facebook, 8 629 sur Instagram et 1 549 sur TikTok.
+        </p>
+
+        <p>
+          Le taux d’engagement moyen toutes plateformes confondues est de 1,89 %, ce qui demeure relativement bon pour une maison d’édition indépendante. Dans le détail, Facebook affiche un engagement assez faible de 0.58%, alors qu’Instagram montre de bien meilleures performances avec un taux de 1,95 %, confirmant que c’est là que la communauté réagit le plus aux contenus proposés.
+        </p>
+
+        <p>
+          Sur une période de 30 jours à partir du 24 octobre, Kairos a publié 53 contenus sur Instagram et 14 sur Facebook, ce qui témoigne d’un bon rythme de publication, surtout sur Instagram. Les contenus partagés sont assez variés : annonces de lancement de livres, mise en avant d’auteurs, photos d’événements littéraires, mais aussi concours et offres promotionnelles. Cette diversité permet d’entretenir l’intérêt des abonnés tout en renforçant l’identité éditoriale de la maison.
+        </p>
+
+        <p>
+          Concernant les formats, Instagram reste la plateforme la plus riche visuellement : les Éditions Kairos y ont publié 27 carrousels, 21 réels et 5 photos dans le dernier mois. Sur Facebook, les formats sont plus simples, principalement 5 vidéos et 9 statuts modifiés.
+        </p>
+
+        <p>
+          D’un point de vue qualitatif, les publications se distinguent par une identité visuelle cohérente, une typographie soignée et un ensemble graphique élégant et professionnel. Ces éléments renforcent la crédibilité de la maison et permettent de mettre en valeur l’univers esthétique propre à la green romance.
+        </p>
+
+        <p>
+          Les interactions présentes dans les commentaires sont généralement positives. On observe un réel enthousiasme de la part des lecteurs, qui réagissent souvent avec curiosité et intérêt aux nouveautés partagées. Cette atmosphère contribue à construire une communauté active et fidèle.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- CONCURRENTS -->
+    <section id="concurrents" class="section">
+      <div class="section-inner reveal">
+        <div class="section-inner-content">
+          <div class="section-label">Environnement concurrentiel</div>
+          <h2 class="section-title">Analyse des concurrents</h2>
+
+          <p>
+            Afin de bien situer les Éditions Kairos dans leur environnement numérique, nous avons analyser trois concurrents directs actifs dans le même secteur. Cette comparaison nous a permis d’évaluer leur présence en ligne, leur engagement et leurs stratégies de contenu.
+          </p>
+
+          <p>
+            En premier lieu, les Éditions Hurtuboise se distinguent par une présence numérique solide, plus particulièrement sur Instagram où elles ont près de 9 983 abonnés, un chiffre qui est légèrement supérieur à celui de Kairos. Leur taux d’engagement est particulièrement haut, il varie entre 0.01% et 6.58% dépendant des publications, démontrant une capacité à générer des fortes interactions avec leur communautés. Cette performance s’explique par l’utilisation de formats visuels attractifs, comme les reels, qui sont souvent centrés sur des unboxings, des rencontres d’auteurs ou des mises en avant de nouveaux titres. Hurtubise privilégie également les carrousels pour présenter ses nouveautés et des photos éditoriales qui renforcent la dimension littéraire de son image. Leur branding se caractérise par une esthétique élégante et cohérente, un ton chaleureux et une mise en scène valorisante des auteurs, ce qui contribue à fidéliser une communauté réceptive et engagée. Leur public se compose principalement de lecteurs passionnés par la fiction contemporaine, particulièrement actifs et enthousiastes dans les commentaires et les partages.
+          </p>
+
+          <p>
+            Hugo Publishing occupe une place bien différente, se positionnant comme un acteur majeur en termes de visibilité. Cette maison dispose d’une audience impressionnante totalisant environ 152 000 abonnés toutes plateformes confondues. Sa présence est dominée par TikTok, où elle rassemble à elle seule 111 000 abonnés. Elle possède également 20 700 abonnés sur Instagram, tandis que le reste de son audience est réparti sur Facebook, Twitter et YouTube. Malgré cette très forte popularité, son taux d’engagement global reste relativement bas, à 0,8 %. Les formats qui génèrent le plus d’intérêt chez Hugo Publishing sont principalement les vidéos TikTok, tirant parti des tendances #BookTok. Les reels Instagram occupent également une place importante, tout comme les annonces de parution, les révélations de couvertures et les contenus inspirés des tendances virales. Le branding d’Hugo Publishing est jeune, moderne et dynamique, ayant des visuels colorés et un ton émotionnel.
+          </p>
+
+          <p>
+            À l’opposé des deux premiers concurrents, les Éditions Maison Rose occupent une place beaucoup moins grande dans le paysage numérique. Leur audience totale atteint environ 1 140 abonnés, dont 515 sur Instagram et 422 sur TikTok, ce qui les place largement derrière leurs concurrents. Leur taux d’engagement est évalué à 0 %, en raison d’un manque de données et probablement d’une absence d’interactions significatives sur leurs publications. Leur présence numérique semble peu structurée, rendant difficile l’identification de formats réellement performants. Leur branding apparaît minimaliste et peu développé, sans identité visuelle marquante, ce qui limite leur capacité à attirer ou fidéliser une communauté.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SWOT -->
+    <section id="swot" class="section">
+      <div class="section-inner reveal">
+        <div class="section-inner-content">
+          <div class="section-label">Synthèse</div>
+          <h2 class="section-title">Analyse SWOT : la présence sur les réseaux sociaux des Éditions Kairos</h2>
+
+          <div class="swot-grid">
+            <div class="swot-card">
+              <div class="swot-tag">Forces</div>
+              <p>
+                Les Éditions Kairos ont déjà une présence bien établie sur les réseaux sociaux, notamment sur Instagram où elles ont plus de 8 600 abonnés. Leur contenu est visuellement soigné. De plus, la communauté démontre un ton positif et enthousiaste sous les publications de la maison d’édition, ce qui témoigne d’un lien affectif. Kairos publie assez fréquemment, spécialement sur Instagram, ce qui maintien le taux d’engagement et la visibilité.
+              </p>
+            </div>
+
+            <div class="swot-card">
+              <div class="swot-tag">Faiblesses</div>
+              <p>
+                Malgré la qualité du contenu, les performances en termes d’engagement demeurent faibles sur certaines plateformes, notamment sur Facebook, où le taux d’engagement atteint seulement 0,58 %. L’audience TikTok, bien que présente, reste assez basse comparée aux concurrents majeurs du secteur. Kairos utilise encore trop peu les formats vidéo dynamiques comme les reels ou les TikTok, alors que ce sont ceux qui génèrent le plus d’engagement dans l’écosystème littéraire actuel. L’analyse révèle aussi que les heures de publication, souvent concentrées entre 7h et 15h, ne correspondent pas toujours aux moments de forte activité des communautés littéraires en ligne.
+              </p>
+            </div>
+
+            <div class="swot-card">
+              <div class="swot-tag">Opportunités</div>
+              <p>
+                L'apparition des communautés littéraires sur Instagram (#bookstagram) et TikTok (#booktok) offre à Kairos un contexte extrêmement favorable. Ces plateformes permettent de toucher de nouvelles audiences, surtout les jeunes lecteurs très actifs dans la promotion de la romance et des tendances littéraires. L’utilisation accrue de reels, de vidéos TikTok, de tendances audios pourrait aider à augmenter le taux d’engagement. Kairos a aussi l’occasion de collaborer davantage avec des influenceurs littéraires, ce qui augmenterait sa visibilité de façon organique. Enfin, la croissance du marché de la romance au Québec et en Europe ouvre la porte à une expansion internationale via les réseaux.
+              </p>
+            </div>
+
+            <div class="swot-card">
+              <div class="swot-tag">Menaces</div>
+              <p>
+                Le marché de l’édition est concurrentiel sur les réseaux sociaux, avec des concurrents beaucoup plus puissants comme Hugo Publishing, qui bénéficie d’une grande présence sur TikTok, ou Hurtubise, qui performe très bien en engagement. Cette concurrence accrue rend la visibilité plus difficile, surtout lorsque les algorithmes favorisent des créateurs individuels plutôt que des maisons d’édition. L’évolution rapide des tendances TikTok représente aussi un risque parce qu’une stratégie qui est mal adaptée peut rapidement être dépassée.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTIFS SMART -->
+    <section id="objectifs" class="section">
+      <div class="section-inner reveal">
+        <div class="section-inner-content">
+          <div class="section-label">Cap vers 2026</div>
+          <h2 class="section-title">Définitions des objectifs SMART</h2>
+
+          <p>
+            Afin de renforcer la présence des Éditions Kairos sur les réseaux sociaux et d’orienter la stratégie numérique vers des résultats concrets et mesurables, trois objectifs SMART ont été définis. Les objectifs retenus s’articulent autour de deux plateformes centrales : Instagram et TikTok, tout en mettant l’accent sur des indicateurs de performance pertinents et non considérés comme de simples vanity metrics.
+          </p>
+
+          <p>
+            Le premier objectif vise à améliorer l’engagement sur Instagram, qui constitue la plateforme la plus performante et la plus active pour les Éditions Kairos. L’objectif est d’augmenter le taux d’engagement moyen sur Instagram de 2,8 % à 5 % d’ici juin 2026. Pour atteindre cette cible, la stratégie prévoit l’intégration régulière de formats vidéo, notamment les Reels, avec un minimum de deux publications par semaine.
+          </p>
+
+          <p>
+            Le second objectif concerne la croissance de la visibilité sur TikTok, une plateforme essentielle pour atteindre un public plus jeune et s’intégrer aux dynamiques du mouvement #BookTok. L’objectif est d’augmenter la portée moyenne des vidéos TikTok de 25 % d’ici juin 2026, en misant sur une hausse de la fréquence de publication : deux vidéos supplémentaires par semaine et en s’appuyant sur les tendances émergentes propres à l’écosystème littéraire de la plateforme.
+          </p>
+
+          <p>
+            Enfin, le troisième objectif se concentre sur une dimension plus directement liée à la performance commerciale : augmenter de 30 % le trafic provenant d’Instagram et Tiktok vers le site web des Éditions Kairos d’ici juin 2026. Pour ce faire, la stratégie inclut l’optimisation du link-in-bio et la publication de contenus cliquables, notamment par les stories, les guides et certains reels. Cet objectif permet de lier la performance sur les réseaux sociaux à un impact concret sur la découvrabilité et les ventes en ligne.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRATÉGIES ET TACTIQUES -->
+    <section id="strategies" class="section">
+      <div class="section-inner reveal">
+        <div class="section-inner-content">
+          <div class="section-label">Mise en œuvre</div>
+          <h2 class="section-title">Stratégies et tactiques</h2>
+
+          <p>
+            Pour l'élaboration d'une stratégie digitale améliorée pour les Éditions Kairos, différentes stratégies ont été repérées dans le but de réaliser les objectifs fixés sur Instagram et TikTok. Ces stratégies comprennent également des tactiques spécifiques, c'est-à-dire des actions pratiques qui permettent leur application dans le domaine numérique. Cette organisation assure une perspective claire tout en rendant l'exécution des actions plus aisée.
+          </p>
+
+          <p>
+            La première stratégie vise à renforcer la collaboration avec les influenceurs littéraires, particulièrement actifs dans les communautés Bookstagram et BookTok. Ces créateurs de contenu jouent un rôle important dans la découverte et la recommandation de romans, et représentent un levier pertinent pour accroître la visibilité des titres de la maison d’édition.
+          </p>
+
+          <p>
+            Une deuxième stratégie consiste à développer davantage le contenu vidéo, notamment sous forme de Reels et de TikTok. Ces formats sont aujourd’hui les plus performants en termes de portée et d’engagement, et permettent de présenter les univers romanesques, les valeurs de la maison et ses ouvrages de manière dynamique.
+          </p>
+
+          <p>
+            La troisième stratégie vise à humaniser la marque, en mettant en avant les membres de l’équipe Kairos, leurs recommandations de lecture ou leur processus éditorial. Cette approche permet de créer une relation plus authentique avec la communauté et d’incarner l’identité de la maison d’édition.
+          </p>
+
+          <p>
+            Une autre stratégie repose sur l’importance d’accroître l’activité communautaire, plus particulièrement sur TikTok. Interagir avec d’autres créateurs, participer aux tendances et répondre aux commentaires contribue à accroître la visibilité algorithmique et à renforcer la présence de Kairos dans l’écosystème littéraire numérique. Enfin, la maison peut également s’appuyer sur une stratégie de renforcement du storytelling, en mettant de l’avant les thématiques propres à la green romance, les émotions liées à la lecture et les messages centraux des ouvrages. Cela contribue à positionner Kairos comme une référence dans un sous-genre littéraire contemporain qui prend de l’ampleur.
+          </p>
+
+          <p>
+            Pour mettre en œuvre ces stratégies, un éventail de tactiques spécifiques peut être mis en place. Un des moyens serait d'expédier des ouvrages aux influenceuses littéraires, dans le but d'inclure éventuellement les œuvres de Kairos dans leurs vidéos comme « mes lectures préférées du mois ».
+          </p>
+
+          <p>
+            Dans l'optique de produire du contenu vidéo et de mettre en avant le groupe, diverses stratégies peuvent être adoptées, comme l'idée d'enregistrer les coulisses de l'équipe, en saisissant par exemple leurs réactions suite à la lecture d'un manuscrit, ou encore celle de filmer les employés en partageant leurs lectures hebdomadaires. Ces vidéos permettent de rendre la marque plus humaine tout en fournissant un contenu authentique pour les plateformes.
+          </p>
+
+          <p>
+            D'autres stratégies peuvent également stimuler l'engagement, telles que l'interaction régulière sur TikTok en aimant, commentant et diffusant le contenu d'autres créateurs. De plus, la conception de bandes-annonces d'extraits de livres, destinées à éveiller l'intérêt des lecteurs, est une stratégie intelligente pour accroître l'attrait des nouveautés. L'organisation de concours, comme celui de faire gagner un livre chaque semaine ou tous les mois, peut aussi stimuler l'implication et augmenter la visibilité des publications, notamment sur Instagram. Par ailleurs, le partage de segments du podcast de Kairos en Reels ou vidéos TikTok constitue un moyen efficace de réutiliser du contenu déjà existant tout en mettant l'accent sur les débats littéraires produits par la maison.
+          </p>
+
+          <p>
+            Parmi les tactiques fondées sur le storytelling et les tendances actuelles, on retrouve la création de contenus tels que « les meilleurs audio books à écouter en multitâche », ou encore la formule « si tu as aimé ce livre, lis celui-ci », qui permet d’établir des liens entre les titres Kairos et des ouvrages populaires. La participation à des événements comme le Salon du livre offre également l’occasion de réaliser des vox pop sur le green romance, créant du contenu dynamique tout en offrant des livres de poche en échange.
+          </p>
+
+          <p>
+            Enfin, plusieurs tactiques visent à diversifier les recommandations thématiques, notamment via des publications telles que « 5 idées de cadeaux pour les lecteurs qui aiment… » ou encore des listes de lecture associées à des ambiances précises comme des lectures « cozy », « relaxantes » ou idéales pour les moments d’ennui.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+ 
+
+</div>
+
+<script>
+  // Défilement fluide + léger accent sur le lien actif
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const targetId = link.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 84;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+  });
+
+  // Apparition douce des sections
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => obs.observe(el));
+
+  // Animation des graphiques en barres
+  function initCharts() {
+    document.querySelectorAll('.bar-chart').forEach(chart => {
+      const bars = chart.querySelectorAll('.bar');
+      const values = Array.from(bars).map(b => parseFloat(b.dataset.value || "0"));
+      const max = Math.max(...values, parseFloat(chart.dataset.max || "0") || 0);
+      bars.forEach((bar, idx) => {
+        const val = values[idx];
+        const ratio = max > 0 ? val / max : 0;
+        const height = Math.max(8, ratio * 100);
+        // délai léger pour l'animation
+        setTimeout(() => {
+          bar.style.transform = 'scaleY(' + (height / 100) + ')';
+        }, 160 + idx * 120);
+      });
+    });
+  }
+
+  // Lance l'animation au chargement
+  window.addEventListener('load', initCharts);
+</script>
+</body>
+</html>
